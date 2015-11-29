@@ -22,8 +22,8 @@ private let reuseIdentifier = "Cell"
 public class EPCalendarPicker: UICollectionViewController {
 
     public var calendarDelegate : EPCalendarPickerDelegate?
-    var multiSelectEnabled: Bool
-    var showsTodaysButton: Bool = true
+    public var multiSelectEnabled: Bool
+    public var showsTodaysButton: Bool = true
     private var arrSelectedDates = [NSDate]()
     public var tintColor: UIColor
     public var weekdayTintColor: UIColor
