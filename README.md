@@ -1,2 +1,3 @@
-# EpCalendarPicker
-Colourful calendar for iOS written in Swift
+# EPCalendarPicker
+Colourful calendar component for iOS written in Swift
+
