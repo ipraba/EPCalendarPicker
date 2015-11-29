@@ -5,6 +5,7 @@ Colourful calendar component for iOS written in Swift
 [![Platform](https://img.shields.io/cocoapods/p/EPCalendarPicker.svg?style=flat)](http://cocoapods.org/pods/EPContactsPicker)
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/EPCalendarPicker.svg?style=flat)](http://cocoadocs.org/docsets/EPContactsPicker)
 [![Swift 2.0](https://img.shields.io/badge/Swift-2.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
+![CI Status](https://travis-ci.org/ipraba/EPCalendarPicker.svg?branch=master)
 
 
 Preview
