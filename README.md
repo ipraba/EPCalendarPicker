@@ -26,6 +26,11 @@ use_frameworks!
 
 Just drag and drop the `EPCalendarPicker` folder into your project
 
+Demo
+----
+
+Stream the demo of this example in browser using [Appetize.io](https://appetize.io/app/2p5cj9qa4efv6z7trhnzc5rmz4)
+
 Features
 --------
 
