@@ -88,19 +88,19 @@ public class EPCalendarPicker: UICollectionViewController {
     }
     
 
-    convenience init(){
+    public convenience init(){
         self.init(startYear: EPDefaults.startYear, endYear: EPDefaults.endYear, multiSelection: EPDefaults.multiSelection)
     }
     
-    convenience init(startYear: Int, endYear: Int) {
+    public convenience init(startYear: Int, endYear: Int) {
         self.init(startYear:startYear, endYear:endYear, multiSelection: EPDefaults.multiSelection)
     }
     
-    convenience init(multiSelection: Bool) {
+    public convenience init(multiSelection: Bool) {
         self.init(startYear: EPDefaults.startYear, endYear: EPDefaults.endYear, multiSelection: multiSelection)
     }
     
-    init(startYear: Int, endYear: Int, multiSelection: Bool) {
+    public init(startYear: Int, endYear: Int, multiSelection: Bool) {
         
         self.startYear = startYear
         self.endYear = endYear

@@ -198,10 +198,10 @@ func ==(lhs: NSDate, rhs: NSDate) -> Bool {
     return lhs.compare(rhs) == NSComparisonResult.OrderedSame
 }
 
-public func <(lhs: NSDate, rhs: NSDate) -> Bool {
+func <(lhs: NSDate, rhs: NSDate) -> Bool {
     return lhs.compare(rhs) == NSComparisonResult.OrderedAscending
 }
 
-public func >(lhs: NSDate, rhs: NSDate) -> Bool {
+func >(lhs: NSDate, rhs: NSDate) -> Bool {
     return rhs.compare(lhs) == NSComparisonResult.OrderedAscending
 }
