@@ -5,6 +5,7 @@ Colourful calendar component for iOS written in Swift
 [![Platform](https://img.shields.io/cocoapods/p/EPCalendarPicker.svg?style=flat)](http://cocoapods.org/pods/EPContactsPicker)
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/EPCalendarPicker.svg?style=flat)](http://cocoadocs.org/docsets/EPContactsPicker)
 [![Swift 2.0](https://img.shields.io/badge/Swift-2.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
+![CI Status](https://travis-ci.org/ipraba/EPCalendarPicker.svg?branch=master)
 
 
 Preview
@@ -24,6 +25,11 @@ use_frameworks!
 ####Manual Installation
 
 Just drag and drop the `EPCalendarPicker` folder into your project
+
+Demo
+----
+
+Stream the demo of this example in browser using [Appetize.io](https://appetize.io/app/2p5cj9qa4efv6z7trhnzc5rmz4)
 
 Features
 --------
