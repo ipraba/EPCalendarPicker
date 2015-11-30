@@ -1,3 +1,7 @@
+<p align="center" >
+  <img src="EPCalendarPickerLogo.png" alt="EPCalendarPicker" title="EPCalendarPicker" width="196">
+</p>
+
 # EPCalendarPicker
 Colourful calendar component for iOS written in Swift
 
