@@ -41,7 +41,7 @@ Features
 EPcalendarPicker provides lot of features which lets you customize the picker
 
 1. Single selection and multiselection option
-2. Customize the colors of teh dates in the picker
+2. Customize the date colors in the picker
 3. Today Indication and Scrolling to today
 4. Delegates that return the selected dates
 5. Ability to set the starting and ending year of the calendar
