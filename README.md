@@ -14,7 +14,7 @@ Colorful calendar component for iOS written in Swift
 
 Preview
 -------
-![Walkthrough](https://raw.githubusercontent.com/ipraba/EPCalendarPicker/master/Screenshots/Walkthough.gif)    ![Screenshot](https://raw.githubusercontent.com/ipraba/EPCalendarPicker/master/Screenshots/Image3.png)
+![Screenshot](https://raw.githubusercontent.com/ipraba/EPCalendarPicker/master/Screenshots/Image2.png)    ![Screenshot](https://raw.githubusercontent.com/ipraba/EPCalendarPicker/master/Screenshots/Image3.png)
 
 
 Installation
