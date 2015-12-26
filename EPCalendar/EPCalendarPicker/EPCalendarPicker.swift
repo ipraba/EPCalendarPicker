@@ -89,18 +89,22 @@ public class EPCalendarPicker: UICollectionViewController {
     
 
     public convenience init(){
-        self.init(startYear: EPDefaults.startYear, endYear: EPDefaults.endYear, multiSelection: EPDefaults.multiSelection)
+        self.init(startYear: EPDefaults.startYear, endYear: EPDefaults.endYear, multiSelection: EPDefaults.multiSelection, selectedDates: nil);
     }
     
     public convenience init(startYear: Int, endYear: Int) {
-        self.init(startYear:startYear, endYear:endYear, multiSelection: EPDefaults.multiSelection)
+        self.init(startYear:startYear, endYear:endYear, multiSelection: EPDefaults.multiSelection, selectedDates: nil)
     }
     
     public convenience init(multiSelection: Bool) {
-        self.init(startYear: EPDefaults.startYear, endYear: EPDefaults.endYear, multiSelection: multiSelection)
+        self.init(startYear: EPDefaults.startYear, endYear: EPDefaults.endYear, multiSelection: multiSelection, selectedDates: nil)
     }
     
-    public init(startYear: Int, endYear: Int, multiSelection: Bool) {
+    public convenience init(startYear: Int, endYear: Int, multiSelection: Bool) {
+        self.init(startYear: EPDefaults.startYear, endYear: EPDefaults.endYear, multiSelection: multiSelection, selectedDates: nil)
+    }
+    
+    public init(startYear: Int, endYear: Int, multiSelection: Bool, selectedDates: [NSDate]?) {
         
         self.startYear = startYear
         self.endYear = endYear
@@ -121,6 +125,9 @@ public class EPCalendarPicker: UICollectionViewController {
         layout.minimumInteritemSpacing = 1
         layout.minimumLineSpacing = 1
         layout.headerReferenceSize = EPDefaults.headerSize
+        if let _ = selectedDates  {
+            self.arrSelectedDates.appendContentsOf(selectedDates!)
+        }
         super.init(collectionViewLayout: layout)
         
     }
@@ -174,7 +181,8 @@ public class EPCalendarPicker: UICollectionViewController {
             cell.lblDay.text = "\(currentDate.day())"
 
             
-            if arrSelectedDates.contains(currentDate) {
+            if arrSelectedDates.filter({ $0.isDateSameDay(currentDate)
+            }).count > 0 {
                 cell.selectedForLabelColor(dateSelectionColor)
             }
             else{
@@ -247,7 +255,8 @@ public class EPCalendarPicker: UICollectionViewController {
         }
         
         if cell.isCellSelectable! {
-            if !(arrSelectedDates.contains(cell.currentDate)) {
+            if arrSelectedDates.filter({ $0.isDateSameDay(cell.currentDate)
+            }).count == 0 {
                 arrSelectedDates.append(cell.currentDate)
                 cell.selectedForLabelColor(dateSelectionColor)
                 
@@ -257,7 +266,7 @@ public class EPCalendarPicker: UICollectionViewController {
             }
             else {
                 arrSelectedDates = arrSelectedDates.filter(){
-                    return $0 != cell.currentDate
+                    return  !($0.isDateSameDay(cell.currentDate))
                 }
                 if cell.currentDate.isSaturday() || cell.currentDate.isSunday() {
                     cell.deSelectedForLabelColor(weekendTintColor)

@@ -182,16 +182,14 @@ extension NSDate {
     }
     
     func isToday() -> Bool {
-        let cal = NSCalendar.currentCalendar()
-        var components = cal.components([.Era, .Year, .Month, .Day], fromDate:NSDate())
-        let today = cal.dateFromComponents(components)!
-        
-        components = cal.components([.Era, .Year, .Month, .Day], fromDate:self);
-        let otherDate = cal.dateFromComponents(components)!
-        return (today.isEqualToDate(otherDate))
-        
+        return self.isDateSameDay(NSDate())
     }
     
+    func isDateSameDay(date: NSDate) -> Bool {
+        
+         return (self.day() == date.day()) && (self.month() == self.month() && (self.year() == date.year()))
+
+    }
 }
 
 func ==(lhs: NSDate, rhs: NSDate) -> Bool {
