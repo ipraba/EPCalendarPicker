@@ -50,7 +50,7 @@ Initialization
 --------------
 You can init the picker as follows
 
-        let calendarPicker = EPCalendarPicker(startYear: 2015, endYear: 2017, multiSelection: true)
+        let calendarPicker = EPCalendarPicker(startYear: 2015, endYear: 2017, multiSelection: true, selectedDates: nil)
         calendarPicker.calendarDelegate = self
         let navigationController = UINavigationController(rootViewController: calendarPicker)
         self.presentViewController(navigationController, animated: true, completion: nil)   
