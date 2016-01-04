@@ -83,7 +83,7 @@ EPCalendarPicker provides you three delegates for getting the callbacks on the p
 
 License
 -------
-EPContactsPicker is available under the MIT license. See the [LICENSE](https://github.com/ipraba/EPContactsPicker/blob/master/LICENSE) file for more info.
+EPCalendarPicker is available under the MIT license. See the [LICENSE](https://github.com/ipraba/EPCalendarPicker/blob/master/LICENSE) file for more info.
 
 Contributors
 ------------
