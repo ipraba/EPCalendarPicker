@@ -7,7 +7,7 @@ Colorful calendar component for iOS written in Swift
 
 
 [![Platform](https://img.shields.io/cocoapods/p/EPCalendarPicker.svg?style=flat)](http://cocoapods.org/pods/EPContactsPicker)
-[![Cocoapods Compatible](https://img.shields.io/cocoapods/v/EPCalendarPicker.svg?style=flat)](http://cocoadocs.org/docsets/EPContactsPicker)
+[![Cocoapods Compatible](https://img.shields.io/cocoapods/v/EPCalendarPicker.svg?style=flat)](http://cocoadocs.org/docsets/EPCalendarPicker)
 [![Swift 2.0](https://img.shields.io/badge/Swift-2.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![CI Status](https://travis-ci.org/ipraba/EPCalendarPicker.svg?branch=master)](https://travis-ci.org/ipraba/EPCalendarPicker)
 [![License](https://img.shields.io/cocoapods/l/Ouroboros.svg?style=flat)](https://github.com/ipraba/EPCalendarPicker/blob/master/LICENSE)
@@ -50,7 +50,7 @@ Initialization
 --------------
 You can init the picker as follows
 
-        let calendarPicker = EPCalendarPicker(startYear: 2015, endYear: 2017, multiSelection: true)
+        let calendarPicker = EPCalendarPicker(startYear: 2015, endYear: 2017, multiSelection: true, selectedDates: nil)
         calendarPicker.calendarDelegate = self
         let navigationController = UINavigationController(rootViewController: calendarPicker)
         self.presentViewController(navigationController, animated: true, completion: nil)   
@@ -83,7 +83,7 @@ EPCalendarPicker provides you three delegates for getting the callbacks on the p
 
 License
 -------
-EPContactsPicker is available under the MIT license. See the [LICENSE](https://github.com/ipraba/EPContactsPicker/blob/master/LICENSE) file for more info.
+EPCalendarPicker is available under the MIT license. See the [LICENSE](https://github.com/ipraba/EPCalendarPicker/blob/master/LICENSE) file for more info.
 
 Contributors
 ------------
