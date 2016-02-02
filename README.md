@@ -11,6 +11,7 @@ Colorful calendar component for iOS written in Swift
 [![Swift 2.0](https://img.shields.io/badge/Swift-2.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![CI Status](https://travis-ci.org/ipraba/EPCalendarPicker.svg?branch=master)](https://travis-ci.org/ipraba/EPCalendarPicker)
 [![License](https://img.shields.io/cocoapods/l/Ouroboros.svg?style=flat)](https://github.com/ipraba/EPCalendarPicker/blob/master/LICENSE)
+ [![Twitter: @HaveYouMetPrabu](https://img.shields.io/badge/contact-@HaveYouMetPrabu-blue.svg?style=flat)](https://twitter.com/HaveYouMetPrabu)
 
 Preview
 -------
