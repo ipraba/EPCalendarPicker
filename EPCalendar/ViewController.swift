@@ -30,6 +30,8 @@ class ViewController: UIViewController, EPCalendarPickerDelegate {
         calendarPicker.hightlightsToday = false
         calendarPicker.showsTodaysButton = false
         calendarPicker.hideDaysFromOtherMonth = true
+        calendarPicker.tintColor = UIColor.whiteColor()
+        calendarPicker.barTintColor = UIColor.greenColor()
         
         let navigationController = UINavigationController(rootViewController: calendarPicker)
         self.presentViewController(navigationController, animated: true, completion: nil)   

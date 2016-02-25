@@ -20,11 +20,12 @@ struct EPDefaults  {
     static let dateSelectionColor = EPColors.PeterRiverColor
     static let monthTitleColor = EPColors.PumpkinColor
     static let todayTintColor = EPColors.AmethystColor
+    
     static let tintColor = EPColors.PomegranateColor
+    static let barTintColor = UIColor.whiteColor()
     
     //HeaderSize
     static let headerSize = CGSizeMake(100,60)
-    
 }
 
 struct EPColors{

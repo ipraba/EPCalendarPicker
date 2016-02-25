@@ -26,6 +26,8 @@ public class EPCalendarPicker: UICollectionViewController {
     public var showsTodaysButton: Bool = true
     private var arrSelectedDates = [NSDate]()
     public var tintColor: UIColor
+    public var barTintColor: UIColor
+    
     public var weekdayTintColor: UIColor
     public var weekendTintColor: UIColor
     public var todayTintColor: UIColor
@@ -46,6 +48,8 @@ public class EPCalendarPicker: UICollectionViewController {
         self.collectionView?.delegate = self
         self.collectionView?.backgroundColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.tintColor = self.tintColor
+        self.navigationController?.navigationBar.barTintColor = self.barTintColor
+        
         self.collectionView?.showsHorizontalScrollIndicator = false
         self.collectionView?.showsVerticalScrollIndicator = false
 
@@ -117,6 +121,7 @@ public class EPCalendarPicker: UICollectionViewController {
         
         //Text color initializations
         self.tintColor = EPDefaults.tintColor
+        self.barTintColor = EPDefaults.barTintColor
         self.weekdayTintColor = EPDefaults.weekdayTintColor
         self.weekendTintColor = EPDefaults.weekendTintColor
         self.dateSelectionColor = EPDefaults.dateSelectionColor
@@ -133,7 +138,6 @@ public class EPCalendarPicker: UICollectionViewController {
             self.arrSelectedDates.appendContentsOf(selectedDates!)
         }
         super.init(collectionViewLayout: layout)
-        
     }
     
 
