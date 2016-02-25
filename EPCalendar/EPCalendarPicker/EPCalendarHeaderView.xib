@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -115,14 +115,14 @@
                 <constraint firstAttribute="trailing" secondItem="hne-Qq-Jmo" secondAttribute="trailing" id="p8x-1d-Vdi"/>
             </constraints>
             <connections>
-                <outlet property="lblFriday" destination="l9N-Fd-tou" id="Umx-ZD-TcW"/>
-                <outlet property="lblMonday" destination="86w-0y-ey8" id="rTN-Qb-BsA"/>
-                <outlet property="lblSaturday" destination="xQs-3z-REx" id="jfp-J0-X2N"/>
-                <outlet property="lblSunday" destination="XtS-fH-RZb" id="X8c-yd-Q8G"/>
-                <outlet property="lblThursday" destination="ua0-Bb-Dg2" id="Tia-w0-HS2"/>
+                <outlet property="lblFifth" destination="ua0-Bb-Dg2" id="Uvh-SJ-xIV"/>
+                <outlet property="lblFirst" destination="XtS-fH-RZb" id="j5b-Nz-HXI"/>
+                <outlet property="lblFourth" destination="Lt7-Ft-F77" id="QDq-MX-qNK"/>
+                <outlet property="lblSecond" destination="86w-0y-ey8" id="HDD-PK-onx"/>
+                <outlet property="lblSeventh" destination="xQs-3z-REx" id="HNI-h5-3W3"/>
+                <outlet property="lblSixth" destination="l9N-Fd-tou" id="gSy-G5-Klb"/>
+                <outlet property="lblThird" destination="Z6P-SX-pQe" id="jkE-4x-664"/>
                 <outlet property="lblTitle" destination="hne-Qq-Jmo" id="NOD-QZ-epv"/>
-                <outlet property="lblTuesday" destination="Z6P-SX-pQe" id="28l-uq-BRF"/>
-                <outlet property="lblWednesday" destination="Lt7-Ft-F77" id="og9-6F-npH"/>
             </connections>
             <point key="canvasLocation" x="245" y="325"/>
         </collectionReusableView>

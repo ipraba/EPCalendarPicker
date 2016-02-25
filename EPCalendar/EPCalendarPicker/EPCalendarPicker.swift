@@ -32,6 +32,10 @@ public class EPCalendarPicker: UICollectionViewController {
     public var dateSelectionColor: UIColor
     public var monthTitleColor: UIColor
     
+    // new options
+    public var startDate: NSDate?
+    public var hightlightsToday: Bool = true
+    public var hideDaysFromOtherMonth: Bool = false
     
     private(set) public var startYear: Int
     private(set) public var endYear: Int
@@ -193,12 +197,22 @@ public class EPCalendarPicker: UICollectionViewController {
                 }
                 if (currentDate > nextMonthFirstDay) {
                     cell.isCellSelectable = false
-                    cell.lblDay.textColor = EPColors.LightGrayColor
+                    if hideDaysFromOtherMonth {
+                        cell.lblDay.textColor = UIColor.clearColor()
+                    } else {
+                        cell.lblDay.textColor = EPColors.LightGrayColor
+                    }
                 }
-                if currentDate.isToday() {
+                if currentDate.isToday() && hightlightsToday {
                     cell.setTodayCellColor(todayTintColor)
                 }
                
+                if startDate != nil {
+                    if NSCalendar.currentCalendar().startOfDayForDate(cell.currentDate) < NSCalendar.currentCalendar().startOfDayForDate(startDate!) {
+                        cell.isCellSelectable = false
+                        cell.lblDay.textColor = EPColors.LightGrayColor
+                    }
+                }
             }
         }
         else {
@@ -206,7 +220,11 @@ public class EPCalendarPicker: UICollectionViewController {
             let previousDay = firstDayOfThisMonth.dateByAddingDays(-( prefixDays - indexPath.row))
             cell.currentDate = previousDay
             cell.lblDay.text = "\(previousDay.day())"
-            cell.lblDay.textColor = EPColors.LightGrayColor
+            if hideDaysFromOtherMonth {
+                cell.lblDay.textColor = UIColor.clearColor()
+            } else {
+                cell.lblDay.textColor = EPColors.LightGrayColor
+            }
             cell.lblDay.layer.backgroundColor = UIColor.whiteColor().CGColor
         }
         return cell
@@ -274,7 +292,7 @@ public class EPCalendarPicker: UICollectionViewController {
                 else {
                     cell.deSelectedForLabelColor(weekdayTintColor)
                 }
-                if cell.currentDate.isToday() {
+                if cell.currentDate.isToday() && hightlightsToday{
                     cell.setTodayCellColor(todayTintColor)
                 }
             }
