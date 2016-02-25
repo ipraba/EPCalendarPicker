@@ -32,9 +32,10 @@ class ViewController: UIViewController, EPCalendarPickerDelegate {
         calendarPicker.hideDaysFromOtherMonth = true
         calendarPicker.tintColor = UIColor.blackColor()
         calendarPicker.barTintColor = UIColor.greenColor()
+        calendarPicker.dayDisabledTintColor = UIColor.grayColor()
         calendarPicker.title = "Title"
         
-        calendarPicker.backgroundImage = UIImage(named: "background_image")
+//        calendarPicker.backgroundImage = UIImage(named: "background_image")
 //        calendarPicker.backgroundColor = UIColor.blueColor()
         
         let navigationController = UINavigationController(rootViewController: calendarPicker)

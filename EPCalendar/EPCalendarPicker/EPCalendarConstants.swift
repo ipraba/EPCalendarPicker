@@ -15,6 +15,7 @@ struct EPDefaults  {
     static let multiSelection = false
     
     //Colors
+    static let dayDisabledTintColor = UIColor.lightGrayColor()
     static let weekdayTintColor = EPColors.EmeraldColor
     static let weekendTintColor = EPColors.PomegranateColor
     static let dateSelectionColor = EPColors.PeterRiverColor

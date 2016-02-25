@@ -24,6 +24,7 @@ public class EPCalendarPicker: UICollectionViewController {
     private var arrSelectedDates = [NSDate]()
     public var tintColor: UIColor
     
+    public var dayDisabledTintColor: UIColor
     public var weekdayTintColor: UIColor
     public var weekendTintColor: UIColor
     public var todayTintColor: UIColor
@@ -131,6 +132,7 @@ public class EPCalendarPicker: UICollectionViewController {
         //Text color initializations
         self.tintColor = EPDefaults.tintColor
         self.barTintColor = EPDefaults.barTintColor
+        self.dayDisabledTintColor = EPDefaults.dayDisabledTintColor
         self.weekdayTintColor = EPDefaults.weekdayTintColor
         self.weekendTintColor = EPDefaults.weekendTintColor
         self.dateSelectionColor = EPDefaults.dateSelectionColor
@@ -213,7 +215,7 @@ public class EPCalendarPicker: UICollectionViewController {
                     if hideDaysFromOtherMonth {
                         cell.lblDay.textColor = UIColor.clearColor()
                     } else {
-                        cell.lblDay.textColor = EPColors.LightGrayColor
+                        cell.lblDay.textColor = self.dayDisabledTintColor
                     }
                 }
                 if currentDate.isToday() && hightlightsToday {
@@ -223,7 +225,7 @@ public class EPCalendarPicker: UICollectionViewController {
                 if startDate != nil {
                     if NSCalendar.currentCalendar().startOfDayForDate(cell.currentDate) < NSCalendar.currentCalendar().startOfDayForDate(startDate!) {
                         cell.isCellSelectable = false
-                        cell.lblDay.textColor = EPColors.LightGrayColor
+                        cell.lblDay.textColor = self.dayDisabledTintColor
                     }
                 }
             }
@@ -236,9 +238,8 @@ public class EPCalendarPicker: UICollectionViewController {
             if hideDaysFromOtherMonth {
                 cell.lblDay.textColor = UIColor.clearColor()
             } else {
-                cell.lblDay.textColor = EPColors.LightGrayColor
+                cell.lblDay.textColor = self.dayDisabledTintColor
             }
-//            cell.lblDay.layer.backgroundColor = UIColor.whiteColor().CGColor
         }
         
         cell.backgroundColor = UIColor.clearColor()
