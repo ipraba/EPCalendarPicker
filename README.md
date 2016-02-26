@@ -67,12 +67,16 @@ Name | Description
 **`todayTintColor`**|`Today bar button the today's date color`
 **`dateSelectionColor`**|`Selected date color`
 **`monthTitleColor`**|`Month title color`
-**`multiSelectEnabled`**|`Boolan value indicating whether multiselection enabled or not`
+**`multiSelectEnabled`**|`Boolean value indicating whether multiselection enabled or not`
 **`calendarDelegate`**|`Delegate`
 **`startYear`**|`Starting year of the calendar`
 **`endYear`**|`Ending year of the calendar`
-
-
+**`startDate`**|`Dates previous to this startDate cannot be selected`
+**`highlightsToday`**|`Boolean that highlights the today date`
+**`hideDaysFromOtherMonth`**|`Hides the days of other months with empty spaces`
+**`backgroundImage`**|`Background Image of the calendar`
+**`backgroundColor`**|`Background Color of the Calendar`
+**`dayDisabledTintColor`**|`Disabled day tint color`
 
 Delegates
 ---------
