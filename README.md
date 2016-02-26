@@ -90,6 +90,10 @@ Credits
 -------
 Thanks to [Stefan Sturm](https://github.com/Urkman) for this super [extensions](https://github.com/ipraba/EPCalendarPicker/pull/9) to this component 
 
+Walkthrough
+-----------
+![Walkthrough](https://raw.githubusercontent.com/ipraba/EPCalendarPicker/master/Screenshots/Walkthrough1.gif)
+
 License
 -------
 EPCalendarPicker is available under the MIT license. See the [LICENSE](https://github.com/ipraba/EPCalendarPicker/blob/master/LICENSE) file for more info.
