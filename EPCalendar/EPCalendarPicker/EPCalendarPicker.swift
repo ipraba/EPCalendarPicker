@@ -198,10 +198,11 @@ public class EPCalendarPicker: UICollectionViewController {
             
             cell.currentDate = currentDate
             cell.lblDay.text = "\(currentDate.day())"
-
+            print(currentDate)
             
             if arrSelectedDates.filter({ $0.isDateSameDay(currentDate)
-            }).count > 0 {
+            }).count > 0 && (firstDayOfThisMonth.month() == currentDate.month()) {
+
                 cell.selectedForLabelColor(dateSelectionColor)
             }
             else{
@@ -231,6 +232,7 @@ public class EPCalendarPicker: UICollectionViewController {
             }
         }
         else {
+            cell.deSelectedForLabelColor(weekdayTintColor)
             cell.isCellSelectable = false
             let previousDay = firstDayOfThisMonth.dateByAddingDays(-( prefixDays - indexPath.row))
             cell.currentDate = previousDay
