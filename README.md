@@ -82,6 +82,10 @@ EPCalendarPicker provides you three delegates for getting the callbacks on the p
     optional    func epCalendarPicker(_: EPCalendarPicker, didSelectDate date : NSDate)
     optional    func epCalendarPicker(_: EPCalendarPicker, didSelectMultipleDate dates : [NSDate])
 
+Credits
+-------
+Thanks to [Stefan Sturm](https://github.com/Urkman) for this super [extensions](https://github.com/ipraba/EPCalendarPicker/pull/9) to this component 
+
 License
 -------
 EPCalendarPicker is available under the MIT license. See the [LICENSE](https://github.com/ipraba/EPCalendarPicker/blob/master/LICENSE) file for more info.
