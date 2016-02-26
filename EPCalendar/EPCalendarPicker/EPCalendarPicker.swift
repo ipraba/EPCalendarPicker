@@ -11,13 +11,10 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 @objc public protocol EPCalendarPickerDelegate{
-    
     optional    func epCalendarPicker(_: EPCalendarPicker, didCancel error : NSError)
     optional    func epCalendarPicker(_: EPCalendarPicker, didSelectDate date : NSDate)
     optional    func epCalendarPicker(_: EPCalendarPicker, didSelectMultipleDate dates : [NSDate])
-    
 }
-
 
 public class EPCalendarPicker: UICollectionViewController {
 
@@ -26,36 +23,57 @@ public class EPCalendarPicker: UICollectionViewController {
     public var showsTodaysButton: Bool = true
     private var arrSelectedDates = [NSDate]()
     public var tintColor: UIColor
+    
+    public var dayDisabledTintColor: UIColor
     public var weekdayTintColor: UIColor
     public var weekendTintColor: UIColor
     public var todayTintColor: UIColor
     public var dateSelectionColor: UIColor
     public var monthTitleColor: UIColor
     
+    // new options
+    public var startDate: NSDate?
+    public var hightlightsToday: Bool = true
+    public var hideDaysFromOtherMonth: Bool = false
+    public var barTintColor: UIColor
+    
+    public var backgroundImage: UIImage?
+    public var backgroundColor: UIColor?
     
     private(set) public var startYear: Int
     private(set) public var endYear: Int
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Date Picker"
-        self.collectionView?.delegate = self
-        self.collectionView?.backgroundColor = UIColor.whiteColor()
+        
+        // setup Navigationbar
         self.navigationController?.navigationBar.tintColor = self.tintColor
+        self.navigationController?.navigationBar.barTintColor = self.barTintColor
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:self.tintColor]
+
+        // setup collectionview
+        self.collectionView?.delegate = self
+        self.collectionView?.backgroundColor = UIColor.clearColor()
         self.collectionView?.showsHorizontalScrollIndicator = false
         self.collectionView?.showsVerticalScrollIndicator = false
 
-
         // Register cell classes
         self.collectionView!.registerNib(UINib(nibName: "EPCalendarCell1", bundle: NSBundle(forClass: EPCalendarPicker.self )), forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.registerNib(UINib(nibName: "EPCalendarHeaderView", bundle: NSBundle(forClass: EPCalendarPicker.self )), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header")
         
-                self.collectionView!.registerNib(UINib(nibName: "EPCalendarHeaderView", bundle: NSBundle(forClass: EPCalendarPicker.self )), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header")
         inititlizeBarButtons()
 
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             self.scrollToToday()
         }
-        // Do any additional setup after loading the view.
+        
+        if backgroundImage != nil {
+            self.collectionView!.backgroundView =  UIImageView(image: backgroundImage)
+        } else if backgroundColor != nil {
+            self.collectionView?.backgroundColor = backgroundColor
+        } else {
+            self.collectionView?.backgroundColor = UIColor.whiteColor()
+        }
     }
 
     
@@ -113,6 +131,8 @@ public class EPCalendarPicker: UICollectionViewController {
         
         //Text color initializations
         self.tintColor = EPDefaults.tintColor
+        self.barTintColor = EPDefaults.barTintColor
+        self.dayDisabledTintColor = EPDefaults.dayDisabledTintColor
         self.weekdayTintColor = EPDefaults.weekdayTintColor
         self.weekendTintColor = EPDefaults.weekendTintColor
         self.dateSelectionColor = EPDefaults.dateSelectionColor
@@ -129,7 +149,6 @@ public class EPCalendarPicker: UICollectionViewController {
             self.arrSelectedDates.appendContentsOf(selectedDates!)
         }
         super.init(collectionViewLayout: layout)
-        
     }
     
 
@@ -193,12 +212,22 @@ public class EPCalendarPicker: UICollectionViewController {
                 }
                 if (currentDate > nextMonthFirstDay) {
                     cell.isCellSelectable = false
-                    cell.lblDay.textColor = EPColors.LightGrayColor
+                    if hideDaysFromOtherMonth {
+                        cell.lblDay.textColor = UIColor.clearColor()
+                    } else {
+                        cell.lblDay.textColor = self.dayDisabledTintColor
+                    }
                 }
-                if currentDate.isToday() {
+                if currentDate.isToday() && hightlightsToday {
                     cell.setTodayCellColor(todayTintColor)
                 }
                
+                if startDate != nil {
+                    if NSCalendar.currentCalendar().startOfDayForDate(cell.currentDate) < NSCalendar.currentCalendar().startOfDayForDate(startDate!) {
+                        cell.isCellSelectable = false
+                        cell.lblDay.textColor = self.dayDisabledTintColor
+                    }
+                }
             }
         }
         else {
@@ -206,9 +235,14 @@ public class EPCalendarPicker: UICollectionViewController {
             let previousDay = firstDayOfThisMonth.dateByAddingDays(-( prefixDays - indexPath.row))
             cell.currentDate = previousDay
             cell.lblDay.text = "\(previousDay.day())"
-            cell.lblDay.textColor = EPColors.LightGrayColor
-            cell.lblDay.layer.backgroundColor = UIColor.whiteColor().CGColor
+            if hideDaysFromOtherMonth {
+                cell.lblDay.textColor = UIColor.clearColor()
+            } else {
+                cell.lblDay.textColor = self.dayDisabledTintColor
+            }
         }
+        
+        cell.backgroundColor = UIColor.clearColor()
         return cell
     }
 
@@ -238,11 +272,12 @@ public class EPCalendarPicker: UICollectionViewController {
             header.lblTitle.textColor = monthTitleColor
             header.updateWeekdaysLabelColor(weekdayTintColor)
             header.updateWeekendLabelColor(weekendTintColor)
+            header.backgroundColor = UIColor.clearColor()
+            
             return header;
         }
 
         return UICollectionReusableView()
-        
     }
     
     override public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -274,7 +309,7 @@ public class EPCalendarPicker: UICollectionViewController {
                 else {
                     cell.deSelectedForLabelColor(weekdayTintColor)
                 }
-                if cell.currentDate.isToday() {
+                if cell.currentDate.isToday() && hightlightsToday{
                     cell.setTodayCellColor(todayTintColor)
                 }
             }

@@ -25,7 +25,7 @@ class EPCalendarCell1: UICollectionViewCell {
     }
     
     func deSelectedForLabelColor(color: UIColor) {
-        self.lblDay.layer.backgroundColor = UIColor.whiteColor().CGColor
+        self.lblDay.layer.backgroundColor = UIColor.clearColor().CGColor
         self.lblDay.textColor = color
     }
     

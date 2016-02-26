@@ -24,8 +24,20 @@ class ViewController: UIViewController, EPCalendarPickerDelegate {
     }
 
     @IBAction func onTouchShowMeCalendarButton(sender: AnyObject) {
-        let calendarPicker = EPCalendarPicker(startYear: 2015, endYear: 2017, multiSelection: true, selectedDates: [NSDate()])
+        let calendarPicker = EPCalendarPicker(startYear: 2016, endYear: 2017, multiSelection: false, selectedDates: [])
         calendarPicker.calendarDelegate = self
+        calendarPicker.startDate = NSDate()
+        calendarPicker.hightlightsToday = false
+        calendarPicker.showsTodaysButton = false
+        calendarPicker.hideDaysFromOtherMonth = true
+        calendarPicker.tintColor = UIColor.blackColor()
+        calendarPicker.barTintColor = UIColor.greenColor()
+        calendarPicker.dayDisabledTintColor = UIColor.grayColor()
+        calendarPicker.title = "Title"
+        
+//        calendarPicker.backgroundImage = UIImage(named: "background_image")
+//        calendarPicker.backgroundColor = UIColor.blueColor()
+        
         let navigationController = UINavigationController(rootViewController: calendarPicker)
         self.presentViewController(navigationController, animated: true, completion: nil)   
     }
