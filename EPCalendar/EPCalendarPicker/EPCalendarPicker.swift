@@ -33,6 +33,7 @@ public class EPCalendarPicker: UICollectionViewController {
     
     // new options
     public var startDate: NSDate?
+    public var endDate: NSDate?
     public var hightlightsToday: Bool = true
     public var hideDaysFromOtherMonth: Bool = false
     public var barTintColor: UIColor
@@ -221,9 +222,15 @@ public class EPCalendarPicker: UICollectionViewController {
                 if currentDate.isToday() && hightlightsToday {
                     cell.setTodayCellColor(todayTintColor)
                 }
-               
+                
                 if startDate != nil {
                     if NSCalendar.currentCalendar().startOfDayForDate(cell.currentDate) < NSCalendar.currentCalendar().startOfDayForDate(startDate!) {
+                        cell.isCellSelectable = false
+                        cell.lblDay.textColor = self.dayDisabledTintColor
+                    }
+                }
+                if endDate != nil {
+                    if NSCalendar.currentCalendar().startOfDayForDate(cell.currentDate) > NSCalendar.currentCalendar().startOfDayForDate(endDate!) && startDate! < endDate! {
                         cell.isCellSelectable = false
                         cell.lblDay.textColor = self.dayDisabledTintColor
                     }
