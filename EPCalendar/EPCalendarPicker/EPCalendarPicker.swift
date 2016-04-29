@@ -180,6 +180,12 @@ public class EPCalendarPicker: UICollectionViewController {
             totalNumber = totalNumber + (7 - addingSuffixDays)
         }
         
+        //russian calendar (if first day is Monday )
+        if(firstDayOfMonth.weekday() == 1){
+            totalNumber += 7
+        }
+        
+        
         return totalNumber
     }
 
@@ -189,7 +195,13 @@ public class EPCalendarPicker: UICollectionViewController {
         
         let calendarStartDate = NSDate(year:startYear, month: 1, day: 1)
         let firstDayOfThisMonth = calendarStartDate.dateByAddingMonths(indexPath.section)
-        let prefixDays = ( firstDayOfThisMonth.weekday() - NSCalendar.currentCalendar().firstWeekday)
+        var prefixDays = ( firstDayOfThisMonth.weekday() - NSCalendar.currentCalendar().firstWeekday)
+        
+        
+        if(prefixDays == -1) // It can take a value of -1 only when the week starts on Monday 
+        {
+            prefixDays += 7
+        }
         
         if indexPath.row >= prefixDays {
             cell.isCellSelectable = true
