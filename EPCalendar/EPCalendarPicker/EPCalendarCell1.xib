@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -19,14 +20,24 @@
                         <color key="textColor" red="0.0" green="0.45016961350000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="toc-wF-6Ac" userLabel="ActivityIndicatorView">
+                        <rect key="frame" x="22" y="37" width="6" height="6"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="toc-wF-6Ac" secondAttribute="height" multiplier="1:1" id="BM1-G5-LXE"/>
+                            <constraint firstAttribute="width" constant="6" id="Bu3-yW-YDk"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="cqZ-GD-NWb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="1vq-0V-sru"/>
+                <constraint firstItem="toc-wF-6Ac" firstAttribute="baseline" secondItem="cqZ-GD-NWb" secondAttribute="baseline" constant="2" id="2Jc-1q-n9h"/>
                 <constraint firstAttribute="trailing" secondItem="cqZ-GD-NWb" secondAttribute="trailing" constant="5" id="JFc-pV-bti"/>
                 <constraint firstItem="cqZ-GD-NWb" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Pvx-qA-eP9"/>
+                <constraint firstItem="toc-wF-6Ac" firstAttribute="centerX" secondItem="cqZ-GD-NWb" secondAttribute="centerX" id="ReC-ke-RD6"/>
                 <constraint firstItem="cqZ-GD-NWb" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="VKQ-7U-064"/>
                 <constraint firstItem="cqZ-GD-NWb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="hcq-WQ-FZQ"/>
                 <constraint firstAttribute="bottom" secondItem="cqZ-GD-NWb" secondAttribute="bottom" constant="5" id="zd6-X9-51u"/>
@@ -38,6 +49,7 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="activityDotView" destination="toc-wF-6Ac" id="mwa-DQ-4eT"/>
                 <outlet property="lblDay" destination="cqZ-GD-NWb" id="k8Y-iO-I6q"/>
             </connections>
         </collectionViewCell>

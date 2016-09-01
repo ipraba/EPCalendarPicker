@@ -21,6 +21,9 @@ struct EPDefaults  {
     static let dateSelectionColor = EPColors.PeterRiverColor
     static let monthTitleColor = EPColors.PumpkinColor
     static let todayTintColor = EPColors.AmethystColor
+    static let activityDotColor = EPColors.PeterRiverColor
+    static let activityDotSelectionColor = UIColor.whiteColor()
+    
     
     static let tintColor = EPColors.PomegranateColor
     static let barTintColor = UIColor.whiteColor()
