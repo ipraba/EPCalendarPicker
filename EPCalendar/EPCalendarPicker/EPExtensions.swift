@@ -186,9 +186,7 @@ extension NSDate {
     }
     
     func isDateSameDay(date: NSDate) -> Bool {
-
          return (self.day() == date.day()) && (self.month() == date.month() && (self.year() == date.year()))
-
     }
 }
 

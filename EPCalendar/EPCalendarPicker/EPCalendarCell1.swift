@@ -13,6 +13,12 @@ class EPCalendarCell1: UICollectionViewCell {
     var currentDate: NSDate!
     var isCellSelectable: Bool?
     
+    @IBOutlet weak var activityDotView: UIView! {
+        didSet {
+            activityDotView.hidden = true
+            activityDotView.layer.cornerRadius = activityDotView.frame.size.width/2
+        }
+    }
     @IBOutlet weak var lblDay: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

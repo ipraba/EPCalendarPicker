@@ -31,6 +31,8 @@ class ViewController: UIViewController, EPCalendarPickerDelegate {
         calendarPicker.showsTodaysButton = true
         calendarPicker.hideDaysFromOtherMonth = true
         calendarPicker.tintColor = UIColor.orangeColor()
+        calendarPicker.activityDotColor = UIColor.blueColor()
+        calendarPicker.activityDotSelectionColor = UIColor.whiteColor()
 //        calendarPicker.barTintColor = UIColor.greenColor()
         calendarPicker.dayDisabledTintColor = UIColor.grayColor()
         calendarPicker.title = "Date Picker"
@@ -52,6 +54,12 @@ class ViewController: UIViewController, EPCalendarPickerDelegate {
     }
     func epCalendarPicker(_: EPCalendarPicker, didSelectMultipleDate dates : [NSDate]) {
         txtViewDetail.text = "User selected dates: \n\(dates)"
+    }
+    
+    func epCalendarPicker(_: EPCalendarPicker, shouldDisplayActivityDotForDate date: NSDate) -> Bool {
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(NSCalendarUnit.Day, fromDate: date)
+        return components.day % 2 == 0
     }
 
 }
