@@ -57,7 +57,6 @@ class ViewController: UIViewController, EPCalendarPickerDelegate {
     }
     
     func epCalendarPicker(_: EPCalendarPicker, shouldDisplayActivityDotForDate date: NSDate) -> Bool {
-        return true
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components(NSCalendarUnit.Day, fromDate: date)
         return components.day % 2 == 0
