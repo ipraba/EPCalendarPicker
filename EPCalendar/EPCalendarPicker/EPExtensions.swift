@@ -191,15 +191,3 @@ extension NSDate {
 
     }
 }
-
-func ==(lhs: NSDate, rhs: NSDate) -> Bool {
-    return lhs.compare(rhs) == NSComparisonResult.OrderedSame
-}
-
-func <(lhs: NSDate, rhs: NSDate) -> Bool {
-    return lhs.compare(rhs) == NSComparisonResult.OrderedAscending
-}
-
-func >(lhs: NSDate, rhs: NSDate) -> Bool {
-    return rhs.compare(lhs) == NSComparisonResult.OrderedAscending
-}
