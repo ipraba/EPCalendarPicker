@@ -11,12 +11,12 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 @objc public protocol EPCalendarPickerDelegate{
-    optional    func epCalendarPicker(_: EPCalendarPicker, didCancel error : NSError)
-    optional    func epCalendarPicker(_: EPCalendarPicker, didSelectDate date : NSDate)
-    optional    func epCalendarPicker(_: EPCalendarPicker, didSelectMultipleDate dates : [NSDate])
+    @objc optional    func epCalendarPicker(_: EPCalendarPicker, didCancel error : NSError)
+    @objc optional    func epCalendarPicker(_: EPCalendarPicker, didSelectDate date : NSDate)
+    @objc optional    func epCalendarPicker(_: EPCalendarPicker, didSelectMultipleDate dates : [NSDate])
 }
 
-public class EPCalendarPicker: UICollectionViewController {
+open class EPCalendarPicker: UICollectionViewController {
 
     open var calendarDelegate : EPCalendarPickerDelegate?
     open var multiSelectEnabled: Bool
@@ -43,7 +43,7 @@ public class EPCalendarPicker: UICollectionViewController {
     fileprivate(set) open var startYear: Int
     fileprivate(set) open var endYear: Int
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         // setup Navigationbar
