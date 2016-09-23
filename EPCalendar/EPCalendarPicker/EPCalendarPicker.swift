@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Dispatch
 
 private let reuseIdentifier = "Cell"
 
@@ -63,7 +64,7 @@ open class EPCalendarPicker: UICollectionViewController {
         
         inititlizeBarButtons()
 
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+        DispatchQueue.main.async { () -> Void in
             self.scrollToToday()
         }
         
