@@ -170,7 +170,7 @@ open class EPCalendarPicker: UICollectionViewController {
     }
 
 
-    override open func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         let startDate = Date(year: startYear, month: 1, day: 1)
         let firstDayOfMonth = startDate.dateByAddingMonths(section)
