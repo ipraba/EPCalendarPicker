@@ -12,8 +12,8 @@ private let reuseIdentifier = "Cell"
 
 @objc public protocol EPCalendarPickerDelegate{
     @objc optional    func epCalendarPicker(_: EPCalendarPicker, didCancel error : NSError)
-    @objc optional    func epCalendarPicker(_: EPCalendarPicker, didSelectDate date : NSDate)
-    @objc optional    func epCalendarPicker(_: EPCalendarPicker, didSelectMultipleDate dates : [NSDate])
+    @objc optional    func epCalendarPicker(_: EPCalendarPicker, didSelectDate date : Date)
+    @objc optional    func epCalendarPicker(_: EPCalendarPicker, didSelectMultipleDate dates : [Date])
 }
 
 open class EPCalendarPicker: UICollectionViewController {
@@ -122,7 +122,7 @@ open class EPCalendarPicker: UICollectionViewController {
         self.init(startYear: EPDefaults.startYear, endYear: EPDefaults.endYear, multiSelection: multiSelection, selectedDates: nil)
     }
     
-    public init(startYear: Int, endYear: Int, multiSelection: Bool, selectedDates: [NSDate]?) {
+    public init(startYear: Int, endYear: Int, multiSelection: Bool, selectedDates: [Date]?) {
         
         self.startYear = startYear
         self.endYear = endYear
@@ -285,7 +285,7 @@ open class EPCalendarPicker: UICollectionViewController {
     override open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! EPCalendarCell1
         if !multiSelectEnabled {
-            calendarDelegate?.epCalendarPicker!(self, didSelectDate: cell.currentDate as Date)
+            calendarDelegate?.epCalendarPicker!(self, didSelectDate: cell.currentDate)
             cell.selectedForLabelColor(dateSelectionColor)
             dismiss(animated: true, completion: nil)
             return
