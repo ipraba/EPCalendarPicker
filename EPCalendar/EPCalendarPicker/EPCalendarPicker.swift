@@ -100,7 +100,7 @@ open class EPCalendarPicker: UICollectionViewController {
         
     }
     
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -158,7 +158,7 @@ open class EPCalendarPicker: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         if startYear > endYear {
             return 0
@@ -169,7 +169,7 @@ open class EPCalendarPicker: UICollectionViewController {
     }
 
 
-    override public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override open func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         let startDate = Date(year: startYear, month: 1, day: 1)
         let firstDayOfMonth = startDate.dateByAddingMonths(section)
