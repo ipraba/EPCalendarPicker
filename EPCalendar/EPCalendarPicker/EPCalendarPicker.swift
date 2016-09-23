@@ -146,8 +146,8 @@ open class EPCalendarPicker: UICollectionViewController {
         layout.minimumInteritemSpacing = 1
         layout.minimumLineSpacing = 1
         layout.headerReferenceSize = EPDefaults.headerSize
-        if let _ = selectedDates  {
-            self.arrSelectedDates.append(contentsOf: selectedDates!)
+        if let dates = selectedDates  {
+            self.arrSelectedDates += dates
         }
         super.init(collectionViewLayout: layout)
     }
