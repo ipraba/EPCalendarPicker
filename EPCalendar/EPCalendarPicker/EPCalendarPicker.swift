@@ -12,8 +12,8 @@ private let reuseIdentifier = "Cell"
 
 @objc public protocol EPCalendarPickerDelegate{
     @objc optional    func epCalendarPicker(_: EPCalendarPicker, didCancel error : NSError)
-    @objc optional    func epCalendarPicker(_: EPCalendarPicker, didSelectDate date : NSDate)
-    @objc optional    func epCalendarPicker(_: EPCalendarPicker, didSelectMultipleDate dates : [NSDate])
+    @objc optional    func epCalendarPicker(_: EPCalendarPicker, didSelectDate date : Date)
+    @objc optional    func epCalendarPicker(_: EPCalendarPicker, didSelectMultipleDate dates : [Date])
 }
 
 open class EPCalendarPicker: UICollectionViewController {
@@ -63,7 +63,7 @@ open class EPCalendarPicker: UICollectionViewController {
         
         inititlizeBarButtons()
 
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+        DispatchQueue.main.async { () -> Void in
             self.scrollToToday()
         }
         
@@ -100,7 +100,7 @@ open class EPCalendarPicker: UICollectionViewController {
         
     }
     
-    override public func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -122,7 +122,7 @@ open class EPCalendarPicker: UICollectionViewController {
         self.init(startYear: EPDefaults.startYear, endYear: EPDefaults.endYear, multiSelection: multiSelection, selectedDates: nil)
     }
     
-    public init(startYear: Int, endYear: Int, multiSelection: Bool, selectedDates: [NSDate]?) {
+    public init(startYear: Int, endYear: Int, multiSelection: Bool, selectedDates: [Date]?) {
         
         self.startYear = startYear
         self.endYear = endYear
@@ -158,7 +158,7 @@ open class EPCalendarPicker: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override open func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         if startYear > endYear {
             return 0
@@ -169,7 +169,7 @@ open class EPCalendarPicker: UICollectionViewController {
     }
 
 
-    override public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         let startDate = Date(year: startYear, month: 1, day: 1)
         let firstDayOfMonth = startDate.dateByAddingMonths(section)
@@ -183,7 +183,7 @@ open class EPCalendarPicker: UICollectionViewController {
         return totalNumber
     }
 
-       override open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! EPCalendarCell1
         
@@ -198,7 +198,6 @@ open class EPCalendarPicker: UICollectionViewController {
             
             cell.currentDate = currentDate
             cell.lblDay.text = "\(currentDate.day())"
-            print(currentDate)
             
             if arrSelectedDates.filter({ $0.isDateSameDay(currentDate)
             }).count > 0 && (firstDayOfThisMonth.month() == currentDate.month()) {
@@ -284,7 +283,7 @@ open class EPCalendarPicker: UICollectionViewController {
     
     override open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! EPCalendarCell1
-        if !multiSelectEnabled {
+        if !multiSelectEnabled && cell.isCellSelectable! {
             calendarDelegate?.epCalendarPicker!(self, didSelectDate: cell.currentDate as Date)
             cell.selectedForLabelColor(dateSelectionColor)
             dismiss(animated: true, completion: nil)

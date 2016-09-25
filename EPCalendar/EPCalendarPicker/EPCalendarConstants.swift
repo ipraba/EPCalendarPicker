@@ -26,7 +26,7 @@ struct EPDefaults  {
     static let barTintColor = UIColor.white
     
     //HeaderSize
-    static let headerSize = CGSizeMake(width: 100, height: 60)
+    static let headerSize = CGSize(width: 100,height: 60)
 }
 
 struct EPColors{
