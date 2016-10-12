@@ -25,9 +25,9 @@ class EPCalendarTests: XCTestCase {
         
         let calendarPicker = EPCalendarPicker(startYear: 2000, endYear: 2001, multiSelection: true)
         let navigationController = UINavigationController(rootViewController: calendarPicker)
-        UIViewController().presentViewController(navigationController, animated: true, completion: nil)
+        UIViewController().present(navigationController, animated: true, completion: nil)
         
-        let numOfSections = calendarPicker.collectionView?.numberOfSections()
+        let numOfSections = calendarPicker.collectionView?.numberOfSections
         
         XCTAssertEqual(numOfSections, 24)
         
