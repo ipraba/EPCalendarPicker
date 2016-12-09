@@ -22,6 +22,7 @@ open class EPCalendarPicker: UICollectionViewController {
     open var multiSelectEnabled: Bool
     open var showsTodaysButton: Bool = true
     fileprivate var arrSelectedDates = [Date]()
+    fileprivate var arrDeselectedDates = [Date]()
     open var tintColor: UIColor
     
     open var dayDisabledTintColor: UIColor
@@ -107,22 +108,22 @@ open class EPCalendarPicker: UICollectionViewController {
     
 
     public convenience init(){
-        self.init(startYear: EPDefaults.startYear, endYear: EPDefaults.endYear, multiSelection: EPDefaults.multiSelection, selectedDates: nil);
+        self.init(startYear: EPDefaults.startYear, endYear: EPDefaults.endYear, multiSelection: EPDefaults.multiSelection, selectedDates: nil, deselectedDates: nil);
     }
     
     public convenience init(startYear: Int, endYear: Int) {
-        self.init(startYear:startYear, endYear:endYear, multiSelection: EPDefaults.multiSelection, selectedDates: nil)
+        self.init(startYear:startYear, endYear:endYear, multiSelection: EPDefaults.multiSelection, selectedDates: nil, deselectedDates: nil)
     }
     
     public convenience init(multiSelection: Bool) {
-        self.init(startYear: EPDefaults.startYear, endYear: EPDefaults.endYear, multiSelection: multiSelection, selectedDates: nil)
+        self.init(startYear: EPDefaults.startYear, endYear: EPDefaults.endYear, multiSelection: multiSelection, selectedDates: nil, deselectedDates: nil)
     }
     
     public convenience init(startYear: Int, endYear: Int, multiSelection: Bool) {
-        self.init(startYear: EPDefaults.startYear, endYear: EPDefaults.endYear, multiSelection: multiSelection, selectedDates: nil)
+        self.init(startYear: EPDefaults.startYear, endYear: EPDefaults.endYear, multiSelection: multiSelection, selectedDates: nil, deselectedDates: nil)
     }
     
-    public init(startYear: Int, endYear: Int, multiSelection: Bool, selectedDates: [Date]?) {
+    public init(startYear: Int, endYear: Int, multiSelection: Bool, selectedDates: [Date]?, deselectedDates: [Date]?) {
         
         self.startYear = startYear
         self.endYear = endYear
@@ -147,6 +148,9 @@ open class EPCalendarPicker: UICollectionViewController {
         layout.headerReferenceSize = EPDefaults.headerSize
         if let _ = selectedDates  {
             self.arrSelectedDates.append(contentsOf: selectedDates!)
+        }
+        if let _ = deselectedDates {
+            self.arrDeselectedDates.append(contentsOf: deselectedDates!)
         }
         super.init(collectionViewLayout: layout)
     }
@@ -191,6 +195,7 @@ open class EPCalendarPicker: UICollectionViewController {
         let firstDayOfThisMonth = calendarStartDate.dateByAddingMonths((indexPath as NSIndexPath).section)
         let prefixDays = ( firstDayOfThisMonth.weekday() - Calendar.current.firstWeekday)
         
+        
         if (indexPath as NSIndexPath).row >= prefixDays {
             cell.isCellSelectable = true
             let currentDate = firstDayOfThisMonth.dateByAddingDays((indexPath as NSIndexPath).row-prefixDays)
@@ -198,12 +203,22 @@ open class EPCalendarPicker: UICollectionViewController {
             
             cell.currentDate = currentDate
             cell.lblDay.text = "\(currentDate.day())"
+
+            
             
             if arrSelectedDates.filter({ $0.isDateSameDay(currentDate)
             }).count > 0 && (firstDayOfThisMonth.month() == currentDate.month()) {
 
                 cell.selectedForLabelColor(dateSelectionColor)
             }
+            
+            else if arrDeselectedDates.filter({ $0.isDateSameDay(currentDate)
+            }).count > 0 && (firstDayOfThisMonth.month() == currentDate.month()) {
+                
+                cell.isCellSelectable = false
+                cell.deSelectedForLabelColor(dayDisabledTintColor)
+            }
+                
             else{
                 cell.deSelectedForLabelColor(weekdayTintColor)
                
@@ -242,7 +257,7 @@ open class EPCalendarPicker: UICollectionViewController {
                 cell.lblDay.textColor = self.dayDisabledTintColor
             }
         }
-        
+
         cell.backgroundColor = UIColor.clear
         return cell
     }
@@ -282,8 +297,9 @@ open class EPCalendarPicker: UICollectionViewController {
     }
     
     override open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let cell = collectionView.cellForItem(at: indexPath) as! EPCalendarCell1
-        if !multiSelectEnabled && cell.isCellSelectable! {
+        if !multiSelectEnabled {
             calendarDelegate?.epCalendarPicker!(self, didSelectDate: cell.currentDate as Date)
             cell.selectedForLabelColor(dateSelectionColor)
             dismiss(animated: true, completion: nil)
