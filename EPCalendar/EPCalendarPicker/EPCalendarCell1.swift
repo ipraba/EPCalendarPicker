@@ -10,7 +10,7 @@ import UIKit
 
 class EPCalendarCell1: UICollectionViewCell {
 
-    var currentDate: NSDate!
+    var currentDate: Date!
     var isCellSelectable: Bool?
     
     @IBOutlet weak var lblDay: UILabel!
@@ -18,22 +18,22 @@ class EPCalendarCell1: UICollectionViewCell {
         super.awakeFromNib()
     }
 
-    func selectedForLabelColor(color: UIColor) {
+    func selectedForLabelColor(_ color: UIColor) {
         self.lblDay.layer.cornerRadius = self.lblDay.frame.size.width/2
-        self.lblDay.layer.backgroundColor = color.CGColor
-        self.lblDay.textColor = UIColor.whiteColor()
+        self.lblDay.layer.backgroundColor = color.cgColor
+        self.lblDay.textColor = UIColor.white
     }
     
-    func deSelectedForLabelColor(color: UIColor) {
-        self.lblDay.layer.backgroundColor = UIColor.clearColor().CGColor
+    func deSelectedForLabelColor(_ color: UIColor) {
+        self.lblDay.layer.backgroundColor = UIColor.clear.cgColor
         self.lblDay.textColor = color
     }
     
     
-    func setTodayCellColor(backgroundColor: UIColor) {
+    func setTodayCellColor(_ backgroundColor: UIColor) {
         
         self.lblDay.layer.cornerRadius = self.lblDay.frame.size.width/2
-        self.lblDay.layer.backgroundColor = backgroundColor.CGColor
-        self.lblDay.textColor  = UIColor.whiteColor()
+        self.lblDay.layer.backgroundColor = backgroundColor.cgColor
+        self.lblDay.textColor  = UIColor.white
     }
 }
