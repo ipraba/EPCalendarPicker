@@ -6,37 +6,36 @@
 //  Copyright © 2015 Prabaharan Elangovan. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 //MARK: UIViewController Extensions
 
 extension UIViewController {
     
-    func showAlert(message: String) {
+    func showAlert(_ message: String) {
         showAlert(message, andTitle: "")
     }
     
-    func showAlert(message: String, andTitle title: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    func showAlert(_ message: String, andTitle title: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
         // add an action (button)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         
         // show the alert
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
 //MARK: UICollectionView Extension
 extension UICollectionView {
     
-    func scrollToIndexpathByShowingHeader(indexPath: NSIndexPath) {
-        let sections = self.numberOfSections()
+    func scrollToIndexpathByShowingHeader(_ indexPath: IndexPath) {
+        let sections = self.numberOfSections
         
         if indexPath.section <= sections{
-            let attributes = self.layoutAttributesForSupplementaryElementOfKind(UICollectionElementKindSectionHeader, atIndexPath: indexPath)
-            let topOfHeader = CGPointMake(0, attributes!.frame.origin.y - self.contentInset.top)
+            let attributes = self.layoutAttributesForSupplementaryElement(ofKind: UICollectionElementKindSectionHeader, at: indexPath)
+            let topOfHeader = CGPoint(x: 0, y: attributes!.frame.origin.y - self.contentInset.top)
             self.setContentOffset(topOfHeader, animated:false)
         }
     }
@@ -44,162 +43,155 @@ extension UICollectionView {
 
 //MARK: NSDate Extensions
 
-extension NSDate {
+extension Date {
     
     func sharedCalendar(){
         
     }
     
-    func firstDayOfMonth () -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let dateComponent = calendar.components([.Year, .Month, .Day ], fromDate: self)
+    var firstDayOfMonth: Date {
+        let calendar = Calendar.current
+        var dateComponent = calendar.dateComponents([.year, .month, .day], from: self)
         dateComponent.day = 1
-        return calendar.dateFromComponents(dateComponent)!
+        return calendar.date(from: dateComponent)!
     }
     
-    convenience init(year : Int, month : Int, day : Int) {
-        
-        let calendar = NSCalendar.currentCalendar()
-        let dateComponent = NSDateComponents()
+    init(year : Int, month : Int, day : Int) {
+        let calendar = Calendar.current
+        var dateComponent = DateComponents()
         dateComponent.year = year
         dateComponent.month = month
         dateComponent.day = day
-        self.init(timeInterval:0, sinceDate:calendar.dateFromComponents(dateComponent)!)
+        self = Date(timeInterval: 0, since: calendar.date(from: dateComponent)!)
     }
     
-    func dateByAddingMonths(months : Int ) -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let dateComponent = NSDateComponents()
-        dateComponent.month = months
-        return calendar.dateByAddingComponents(dateComponent, toDate: self, options: NSCalendarOptions.MatchNextTime)!
+    func dateByAddingMonths(_ months : Int ) -> Date {
+        return  Calendar.current.date(byAdding: .month, value: months, to: self)!
     }
     
-    func dateByAddingDays(days : Int ) -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let dateComponent = NSDateComponents()
-        dateComponent.day = days
-        return calendar.dateByAddingComponents(dateComponent, toDate: self, options: NSCalendarOptions.MatchNextTime)!
+    func dateByAddingDays(_ days : Int ) -> Date {
+        return Calendar.current.date(byAdding: .day, value: days, to: self)!
+
     }
     
-    func hour() -> Int {
-        let calendar = NSCalendar.currentCalendar()
-        let dateComponent = calendar.components(.Hour, fromDate: self)
-        return dateComponent.hour
+    var hour: Int {
+        let calendar = Calendar.current
+        let dateComponent = calendar.dateComponents([.hour], from: self)
+        return dateComponent.hour!
     }
     
-    func second() -> Int {
-        let calendar = NSCalendar.currentCalendar()
-        let dateComponent = calendar.components(.Second, fromDate: self)
-        return dateComponent.second
+    var second: Int {
+        let calendar = Calendar.current
+        let dateComponent = calendar.dateComponents([.second], from: self)
+        return dateComponent.second!
     }
     
-    func minute() -> Int {
-        let calendar = NSCalendar.currentCalendar()
-        let dateComponent = calendar.components(.Minute, fromDate: self)
-        return dateComponent.minute
+    var minute: Int {
+        let calendar = Calendar.current
+        let dateComponent = calendar.dateComponents([.minute], from: self)
+        return dateComponent.minute!
     }
     
-    func day() -> Int {
-        let calendar = NSCalendar.currentCalendar()
-        let dateComponent = calendar.components(.Day, fromDate: self)
-        return dateComponent.day
+    var day: Int {
+        let calendar = Calendar.current
+        let dateComponent = calendar.dateComponents([.day], from: self)
+        return dateComponent.day!
     }
     
-    func weekday() -> Int {
-        let calendar = NSCalendar.currentCalendar()
-        let dateComponent = calendar.components(.Weekday, fromDate: self)
-        return dateComponent.weekday
+    var weekday: Int {
+        let calendar = Calendar.current
+        let dateComponent = calendar.dateComponents([.weekday], from: self)
+        return dateComponent.weekday!
     }
     
-    func month() -> Int {
-        let calendar = NSCalendar.currentCalendar()
-        let dateComponent = calendar.components(.Month, fromDate: self)
-        return dateComponent.month
+    var month: Int {
+        let calendar = Calendar.current
+        let dateComponent = calendar.dateComponents([.month], from: self)
+        return dateComponent.month!
     }
     
-    func year() -> Int {
-        let calendar = NSCalendar.currentCalendar()
-        let dateComponent = calendar.components(.Year, fromDate: self)
-        return dateComponent.year
+    var year: Int {
+        let calendar = Calendar.current
+        let dateComponent = calendar.dateComponents([.year], from: self)
+        return dateComponent.year!
     }
     
-    func numberOfDaysInMonth() -> Int {
-        let calendar = NSCalendar.currentCalendar()
-        let days = calendar.rangeOfUnit(NSCalendarUnit.Day, inUnit: NSCalendarUnit.Month, forDate: self)
-        return days.length
+    var numberOfDaysInMonth: Int {
+        let calendar = Calendar.current
+        let days = calendar.range(of: .day, in: .month, for: self)!
+        return days.count
     }
     
-    func dateByIgnoringTime() -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let dateComponent = calendar.components([.Year, .Month, .Day ], fromDate: self)
-        return calendar.dateFromComponents(dateComponent)!
+    var dateByIgnoringTime: Date {
+        let calendar = Calendar.current
+        let dateComponent = calendar.dateComponents([.year, .month, .day], from: self)
+        return calendar.date(from: dateComponent)!
     }
     
-    func monthNameFull() -> String {
-        let dateFormatter = NSDateFormatter()
+    var monthNameFull: String {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM YYYY"
-        return dateFormatter.stringFromDate(self)
+        return dateFormatter.string(from: self)
     }
     
-    func isSunday() -> Bool
+    var isSunday: Bool
     {
-        return (self.getWeekday() == 1)
+        return (self.getWeekday == 1)
     }
     
-    func isMonday() -> Bool
+    var isMonday: Bool
     {
-        return (self.getWeekday() == 2)
+        return (self.getWeekday == 2)
     }
     
-    func isTuesday() -> Bool
+    var isTuesday: Bool
     {
-        return (self.getWeekday() == 3)
+        return (self.getWeekday == 3)
     }
     
-    func isWednesday() -> Bool
+    var isWednesday: Bool
     {
-        return (self.getWeekday() == 4)
+        return (self.getWeekday == 4)
     }
     
-    func isThursday() -> Bool
+    var isThursday: Bool
     {
-        return (self.getWeekday() == 5)
+        return (self.getWeekday == 5)
     }
     
-    func isFriday() -> Bool
+    var isFriday: Bool
     {
-        return (self.getWeekday() == 6)
+        return (self.getWeekday == 6)
     }
     
-    func isSaturday() -> Bool
+    var isSaturday: Bool
     {
-        return (self.getWeekday() == 7)
+        return (self.getWeekday == 7)
     }
     
-    func getWeekday() -> Int {
-        let calendar = NSCalendar.currentCalendar()
-        return calendar.components( .Weekday, fromDate: self).weekday
+    var getWeekday: Int {
+        let calendar = Calendar.current
+        return calendar.dateComponents([.weekday], from: self).weekday!
     }
     
-    func isToday() -> Bool {
-        return self.isDateSameDay(NSDate())
+    var isToday: Bool {
+        return self.isDateSameDay(Date())
     }
     
-    func isDateSameDay(date: NSDate) -> Bool {
+    func isDateSameDay(_ date: Date) -> Bool {
 
-         return (self.day() == date.day()) && (self.month() == date.month() && (self.year() == date.year()))
+         return (self.day == date.day) && (self.month == date.month && (self.year == date.year))
 
+    }
+
+    
+    static func <(lhs: Date, rhs: Date) -> Bool {
+        return lhs.compare(rhs) == ComparisonResult.orderedAscending
+    }
+    
+    static func >(lhs: Date, rhs: Date) -> Bool {
+        return rhs.compare(lhs) == ComparisonResult.orderedAscending
     }
 }
 
-func ==(lhs: NSDate, rhs: NSDate) -> Bool {
-    return lhs.compare(rhs) == NSComparisonResult.OrderedSame
-}
 
-func <(lhs: NSDate, rhs: NSDate) -> Bool {
-    return lhs.compare(rhs) == NSComparisonResult.OrderedAscending
-}
-
-func >(lhs: NSDate, rhs: NSDate) -> Bool {
-    return rhs.compare(lhs) == NSComparisonResult.OrderedAscending
-}
