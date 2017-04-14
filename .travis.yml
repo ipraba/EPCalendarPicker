@@ -4,6 +4,7 @@ xcode_project: EPCalendar.xcodeproj #3
 xcode_scheme: EPCalendar #4
 xcode_sdk: iphonesimulator #5
 script:
+- open -b com.apple.iphonesimulator
 - xcodebuild -project EPCalendar.xcodeproj -scheme EPCalendar -sdk iphonesimulator  -destination "platform=iOS Simulator,name=iPhone 7" build test
 
 #https://github.com/ipraba/EPCalendarPicker
