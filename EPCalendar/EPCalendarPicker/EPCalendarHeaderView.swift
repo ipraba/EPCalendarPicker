@@ -22,10 +22,10 @@ class EPCalendarHeaderView: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let calendar = NSCalendar.currentCalendar()
+        let calendar = Calendar.current
         let weeksDayList = calendar.shortWeekdaySymbols
         
-        if NSCalendar.currentCalendar().firstWeekday == 2 {
+        if Calendar.current.firstWeekday == 2 {
             lblFirst.text = weeksDayList[1]
             lblSecond.text = weeksDayList[2]
             lblThird.text = weeksDayList[3]
@@ -44,9 +44,9 @@ class EPCalendarHeaderView: UICollectionReusableView {
         }
     }
     
-    func updateWeekendLabelColor(color: UIColor)
+    func updateWeekendLabelColor(_ color: UIColor)
     {
-        if NSCalendar.currentCalendar().firstWeekday == 2 {
+        if Calendar.current.firstWeekday == 2 {
             lblSixth.textColor = color
             lblSeventh.textColor = color
         } else {
@@ -55,8 +55,8 @@ class EPCalendarHeaderView: UICollectionReusableView {
         }
     }
     
-    func updateWeekdaysLabelColor(color: UIColor) {
-        if NSCalendar.currentCalendar().firstWeekday == 2 {
+    func updateWeekdaysLabelColor(_ color: UIColor) {
+        if Calendar.current.firstWeekday == 2 {
             lblFirst.textColor = color
             lblSecond.textColor = color
             lblThird.textColor = color

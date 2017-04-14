@@ -15,7 +15,7 @@ struct EPDefaults  {
     static let multiSelection = false
     
     //Colors
-    static let dayDisabledTintColor = UIColor.lightGrayColor()
+    static let dayDisabledTintColor = UIColor.lightGray
     static let weekdayTintColor = EPColors.EmeraldColor
     static let weekendTintColor = EPColors.PomegranateColor
     static let dateSelectionColor = EPColors.PeterRiverColor
@@ -23,10 +23,10 @@ struct EPDefaults  {
     static let todayTintColor = EPColors.AmethystColor
     
     static let tintColor = EPColors.PomegranateColor
-    static let barTintColor = UIColor.whiteColor()
+    static let barTintColor = UIColor.white
     
     //HeaderSize
-    static let headerSize = CGSizeMake(100,60)
+    static let headerSize = CGSize(width: 100,height: 60)
 }
 
 struct EPColors{
