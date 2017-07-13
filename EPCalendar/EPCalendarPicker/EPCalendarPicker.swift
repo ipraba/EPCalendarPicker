@@ -173,11 +173,13 @@ open class EPCalendarPicker: UICollectionViewController {
         
         let startDate = Date(year: startYear, month: 1, day: 1)
         let firstDayOfMonth = startDate.dateByAddingMonths(section)
-        let addingPrefixDaysWithMonthDyas = ( firstDayOfMonth.numberOfDaysInMonth() + firstDayOfMonth.weekday() - Calendar.current.firstWeekday )
+
+        let addingPrefixDaysWithMonthDyas = (firstDayOfMonth.numberOfDaysInMonth + firstDayOfMonth.weekday - Calendar.current.firstWeekday)
+
         let addingSuffixDays = addingPrefixDaysWithMonthDyas%7
         var totalNumber  = addingPrefixDaysWithMonthDyas
         if addingSuffixDays != 0 {
-            totalNumber = totalNumber + (7 - addingSuffixDays)
+//            totalNumber = totalNumber + (7 - addingSuffixDays)
         }
         
         return totalNumber
@@ -189,25 +191,26 @@ open class EPCalendarPicker: UICollectionViewController {
         
         let calendarStartDate = Date(year:startYear, month: 1, day: 1)
         let firstDayOfThisMonth = calendarStartDate.dateByAddingMonths(indexPath.section)
-        let prefixDays = ( firstDayOfThisMonth.weekday() - Calendar.current.firstWeekday)
+
+        let prefixDays = (firstDayOfThisMonth.weekday - Calendar.current.firstWeekday)
         
         if indexPath.row >= prefixDays {
             cell.isCellSelectable = true
             let currentDate = firstDayOfThisMonth.dateByAddingDays(indexPath.row-prefixDays)
-            let nextMonthFirstDay = firstDayOfThisMonth.dateByAddingDays(firstDayOfThisMonth.numberOfDaysInMonth()-1)
+            let nextMonthFirstDay = firstDayOfThisMonth.dateByAddingDays(firstDayOfThisMonth.numberOfDaysInMonth-1)
             
             cell.currentDate = currentDate
-            cell.lblDay.text = "\(currentDate.day())"
+            cell.lblDay.text = "\(currentDate.day)"
             
             if arrSelectedDates.filter({ $0.isDateSameDay(currentDate)
-            }).count > 0 && (firstDayOfThisMonth.month() == currentDate.month()) {
+            }).count > 0 && (firstDayOfThisMonth.month == currentDate.month) {
 
                 cell.selectedForLabelColor(dateSelectionColor)
             }
             else{
                 cell.deSelectedForLabelColor(weekdayTintColor)
                
-                if cell.currentDate.isSaturday() || cell.currentDate.isSunday() {
+                if cell.currentDate.isSaturday || cell.currentDate.isSunday {
                     cell.lblDay.textColor = weekendTintColor
                 }
                 if (currentDate > nextMonthFirstDay) {
@@ -218,12 +221,14 @@ open class EPCalendarPicker: UICollectionViewController {
                         cell.lblDay.textColor = self.dayDisabledTintColor
                     }
                 }
-                if currentDate.isToday() && hightlightsToday {
+                if currentDate.isToday && hightlightsToday {
                     cell.setTodayCellColor(todayTintColor)
                 }
                
                 if startDate != nil {
-                    if Calendar.current.startOfDay(for: cell.currentDate as Date) < Calendar.current.startOfDay(for: startDate!) {
+
+                    if Calendar.current.startOfDay(for: cell.currentDate) < Calendar.current.startOfDay(for: startDate!) {
+
                         cell.isCellSelectable = false
                         cell.lblDay.textColor = self.dayDisabledTintColor
                     }
@@ -235,7 +240,7 @@ open class EPCalendarPicker: UICollectionViewController {
             cell.isCellSelectable = false
             let previousDay = firstDayOfThisMonth.dateByAddingDays(-( prefixDays - indexPath.row))
             cell.currentDate = previousDay
-            cell.lblDay.text = "\(previousDay.day())"
+            cell.lblDay.text = "\(previousDay.day)"
             if hideDaysFromOtherMonth {
                 cell.lblDay.textColor = UIColor.clear
             } else {
@@ -269,7 +274,7 @@ open class EPCalendarPicker: UICollectionViewController {
             let startDate = Date(year: startYear, month: 1, day: 1)
             let firstDayOfMonth = startDate.dateByAddingMonths(indexPath.section)
             
-            header.lblTitle.text = firstDayOfMonth.monthNameFull()
+            header.lblTitle.text = firstDayOfMonth.monthNameFull
             header.lblTitle.textColor = monthTitleColor
             header.updateWeekdaysLabelColor(weekdayTintColor)
             header.updateWeekendLabelColor(weekendTintColor)
@@ -296,7 +301,7 @@ open class EPCalendarPicker: UICollectionViewController {
                 arrSelectedDates.append(cell.currentDate)
                 cell.selectedForLabelColor(dateSelectionColor)
                 
-                if cell.currentDate.isToday() {
+                if cell.currentDate.isToday {
                     cell.setTodayCellColor(dateSelectionColor)
                 }
             }
@@ -304,13 +309,13 @@ open class EPCalendarPicker: UICollectionViewController {
                 arrSelectedDates = arrSelectedDates.filter(){
                     return  !($0.isDateSameDay(cell.currentDate))
                 }
-                if cell.currentDate.isSaturday() || cell.currentDate.isSunday() {
+                if cell.currentDate.isSaturday || cell.currentDate.isSunday {
                     cell.deSelectedForLabelColor(weekendTintColor)
                 }
                 else {
                     cell.deSelectedForLabelColor(weekdayTintColor)
                 }
-                if cell.currentDate.isToday() && hightlightsToday{
+                if cell.currentDate.isToday && hightlightsToday{
                     cell.setTodayCellColor(todayTintColor)
                 }
             }
@@ -345,8 +350,8 @@ open class EPCalendarPicker: UICollectionViewController {
     
     open func scrollToMonthForDate (_ date: Date) {
 
-        let month = date.month()
-        let year = date.year()
+        let month = date.month
+        let year = date.year
         let section = ((year - startYear) * 12) + month
         let indexPath = IndexPath(row:1, section: section-1)
         

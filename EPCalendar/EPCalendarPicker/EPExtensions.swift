@@ -6,7 +6,6 @@
 //  Copyright © 2015 Prabaharan Elangovan. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 //MARK: UIViewController Extensions
@@ -50,145 +49,138 @@ extension Date {
         
     }
     
-    func firstDayOfMonth () -> Date {
+    var firstDayOfMonth: Date {
         let calendar = Calendar.current
-        var dateComponent = (calendar as NSCalendar).components([.year, .month, .day ], from: self)
+        var dateComponent = calendar.dateComponents([.year, .month, .day], from: self)
+
         dateComponent.day = 1
         return calendar.date(from: dateComponent)!
     }
     
     init(year : Int, month : Int, day : Int) {
-        
         let calendar = Calendar.current
         var dateComponent = DateComponents()
         dateComponent.year = year
         dateComponent.month = month
         dateComponent.day = day
-        self = calendar.date(from: dateComponent)!
+        self = Date(timeInterval: 0, since: calendar.date(from: dateComponent)!)
     }
     
     func dateByAddingMonths(_ months : Int ) -> Date {
-        let calendar = Calendar.current
-        var dateComponent = DateComponents()
-        dateComponent.month = months
-        return (calendar as NSCalendar).date(byAdding: dateComponent, to: self, options: NSCalendar.Options.matchNextTime)!
+        return  Calendar.current.date(byAdding: .month, value: months, to: self)!
     }
     
     func dateByAddingDays(_ days : Int ) -> Date {
-        let calendar = Calendar.current
-        var dateComponent = DateComponents()
-        dateComponent.day = days
-        return (calendar as NSCalendar).date(byAdding: dateComponent, to: self, options: NSCalendar.Options.matchNextTime)!
+        return Calendar.current.date(byAdding: .day, value: days, to: self)!
+
     }
     
-    func hour() -> Int {
+    var hour: Int {
         let calendar = Calendar.current
-        let dateComponent = (calendar as NSCalendar).components(.hour, from: self)
+        let dateComponent = calendar.dateComponents([.hour], from: self)
         return dateComponent.hour!
     }
     
-    func second() -> Int {
+    var second: Int {
         let calendar = Calendar.current
-        let dateComponent = (calendar as NSCalendar).components(.second, from: self)
+        let dateComponent = calendar.dateComponents([.second], from: self)
         return dateComponent.second!
     }
     
-    func minute() -> Int {
+    var minute: Int {
         let calendar = Calendar.current
-        let dateComponent = (calendar as NSCalendar).components(.minute, from: self)
+        let dateComponent = calendar.dateComponents([.minute], from: self)
         return dateComponent.minute!
     }
     
-    func day() -> Int {
+    var day: Int {
         let calendar = Calendar.current
-        let dateComponent = (calendar as NSCalendar).components(.day, from: self)
+        let dateComponent = calendar.dateComponents([.day], from: self)
         return dateComponent.day!
     }
     
-    func weekday() -> Int {
+    var weekday: Int {
         let calendar = Calendar.current
-        let dateComponent = (calendar as NSCalendar).components(.weekday, from: self)
+        let dateComponent = calendar.dateComponents([.weekday], from: self)
         return dateComponent.weekday!
     }
     
-    func month() -> Int {
+    var month: Int {
         let calendar = Calendar.current
-        let dateComponent = (calendar as NSCalendar).components(.month, from: self)
+        let dateComponent = calendar.dateComponents([.month], from: self)
         return dateComponent.month!
     }
     
-    func year() -> Int {
+    var year: Int {
         let calendar = Calendar.current
-        let dateComponent = (calendar as NSCalendar).components(.year, from: self)
+        let dateComponent = calendar.dateComponents([.year], from: self)
         return dateComponent.year!
     }
     
-    func numberOfDaysInMonth() -> Int {
+    var numberOfDaysInMonth: Int {
         let calendar = Calendar.current
-        let days = (calendar as NSCalendar).range(of: NSCalendar.Unit.day, in: NSCalendar.Unit.month, for: self)
-        return days.length
+        let days = calendar.range(of: .day, in: .month, for: self)!
+        return days.count
     }
     
-    func dateByIgnoringTime() -> Date {
+    var dateByIgnoringTime: Date {
         let calendar = Calendar.current
-        let dateComponent = (calendar as NSCalendar).components([.year, .month, .day ], from: self)
+        let dateComponent = calendar.dateComponents([.year, .month, .day], from: self)
         return calendar.date(from: dateComponent)!
     }
     
-    func monthNameFull() -> String {
+    var monthNameFull: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM YYYY"
         return dateFormatter.string(from: self)
     }
     
-    func isSunday() -> Bool
+    var isSunday: Bool
     {
-        return (self.getWeekday() == 1)
+        return (self.getWeekday == 1)
     }
     
-    func isMonday() -> Bool
+    var isMonday: Bool
     {
-        return (self.getWeekday() == 2)
+        return (self.getWeekday == 2)
     }
     
-    func isTuesday() -> Bool
+    var isTuesday: Bool
     {
-        return (self.getWeekday() == 3)
+        return (self.getWeekday == 3)
     }
     
-    func isWednesday() -> Bool
+    var isWednesday: Bool
     {
-        return (self.getWeekday() == 4)
+        return (self.getWeekday == 4)
     }
     
-    func isThursday() -> Bool
+    var isThursday: Bool
     {
-        return (self.getWeekday() == 5)
+        return (self.getWeekday == 5)
     }
     
-    func isFriday() -> Bool
+    var isFriday: Bool
     {
-        return (self.getWeekday() == 6)
+        return (self.getWeekday == 6)
     }
     
-    func isSaturday() -> Bool
+    var isSaturday: Bool
     {
-        return (self.getWeekday() == 7)
+        return (self.getWeekday == 7)
     }
-    
-    func getWeekday() -> Int {
+
+    var getWeekday: Int {
         let calendar = Calendar.current
-        return (calendar as NSCalendar).components( .weekday, from: self).weekday!
+        return calendar.dateComponents([.weekday], from: self).weekday!
     }
     
-    func isToday() -> Bool {
+    var isToday: Bool {
         return self.isDateSameDay(Date())
     }
     
     func isDateSameDay(_ date: Date) -> Bool {
-
-         return (self.day() == date.day()) && (self.month() == date.month() && (self.year() == date.year()))
-
+         return (self.day == date.day) && (self.month == date.month && (self.year == date.year))
     }
     
     static func ==(lhs: Date, rhs: Date) -> Bool {
