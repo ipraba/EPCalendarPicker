@@ -8,7 +8,7 @@ Colorful calendar component for iOS written in Swift
 
 [![Platform](https://img.shields.io/cocoapods/p/EPCalendarPicker.svg?style=flat)](http://cocoapods.org/pods/EPContactsPicker)
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/EPCalendarPicker.svg?style=flat)](http://cocoadocs.org/docsets/EPCalendarPicker)
-[![Swift 2.0](https://img.shields.io/badge/Swift-2.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![CI Status](https://travis-ci.org/ipraba/EPCalendarPicker.svg?branch=master)](https://travis-ci.org/ipraba/EPCalendarPicker)
 [![License](https://img.shields.io/cocoapods/l/Ouroboros.svg?style=flat)](https://github.com/ipraba/EPCalendarPicker/blob/master/LICENSE)
  [![Twitter: @HaveYouMetPrabu](https://img.shields.io/badge/contact-@HaveYouMetPrabu-blue.svg?style=flat)](https://twitter.com/HaveYouMetPrabu)
@@ -21,13 +21,13 @@ Preview
 Installation
 ------------
 
-####CocoaPods
+#### CocoaPods
 EPCalendarPicker is available on CocoaPods. Just add the following to your project Podfile:
 ```
 pod 'EPCalendarPicker'
 use_frameworks!
 ```
-####Manual Installation
+#### Manual Installation
 
 Just drag and drop the `EPCalendarPicker` folder into your project
 

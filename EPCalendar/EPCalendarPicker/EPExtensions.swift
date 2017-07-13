@@ -52,6 +52,7 @@ extension Date {
     var firstDayOfMonth: Date {
         let calendar = Calendar.current
         var dateComponent = calendar.dateComponents([.year, .month, .day], from: self)
+
         dateComponent.day = 1
         return calendar.date(from: dateComponent)!
     }
@@ -168,7 +169,7 @@ extension Date {
     {
         return (self.getWeekday == 7)
     }
-    
+
     var getWeekday: Int {
         let calendar = Calendar.current
         return calendar.dateComponents([.weekday], from: self).weekday!
@@ -179,11 +180,12 @@ extension Date {
     }
     
     func isDateSameDay(_ date: Date) -> Bool {
-
          return (self.day == date.day) && (self.month == date.month && (self.year == date.year))
-
     }
-
+    
+    static func ==(lhs: Date, rhs: Date) -> Bool {
+        return lhs.compare(rhs) == ComparisonResult.orderedSame
+    }
     
     static func <(lhs: Date, rhs: Date) -> Bool {
         return lhs.compare(rhs) == ComparisonResult.orderedAscending
@@ -193,5 +195,3 @@ extension Date {
         return rhs.compare(lhs) == ComparisonResult.orderedAscending
     }
 }
-
-

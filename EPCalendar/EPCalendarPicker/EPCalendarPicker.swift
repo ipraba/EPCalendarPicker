@@ -173,7 +173,9 @@ open class EPCalendarPicker: UICollectionViewController {
         
         let startDate = Date(year: startYear, month: 1, day: 1)
         let firstDayOfMonth = startDate.dateByAddingMonths(section)
+
         let addingPrefixDaysWithMonthDyas = (firstDayOfMonth.numberOfDaysInMonth + firstDayOfMonth.weekday - Calendar.current.firstWeekday)
+
         let addingSuffixDays = addingPrefixDaysWithMonthDyas%7
         var totalNumber  = addingPrefixDaysWithMonthDyas
         if addingSuffixDays != 0 {
@@ -189,6 +191,7 @@ open class EPCalendarPicker: UICollectionViewController {
         
         let calendarStartDate = Date(year:startYear, month: 1, day: 1)
         let firstDayOfThisMonth = calendarStartDate.dateByAddingMonths(indexPath.section)
+
         let prefixDays = (firstDayOfThisMonth.weekday - Calendar.current.firstWeekday)
         
         if indexPath.row >= prefixDays {
@@ -223,7 +226,9 @@ open class EPCalendarPicker: UICollectionViewController {
                 }
                
                 if startDate != nil {
+
                     if Calendar.current.startOfDay(for: cell.currentDate) < Calendar.current.startOfDay(for: startDate!) {
+
                         cell.isCellSelectable = false
                         cell.lblDay.textColor = self.dayDisabledTintColor
                     }
@@ -284,7 +289,7 @@ open class EPCalendarPicker: UICollectionViewController {
     override open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! EPCalendarCell1
         if !multiSelectEnabled && cell.isCellSelectable! {
-            calendarDelegate?.epCalendarPicker!(self, didSelectDate: cell.currentDate)
+            calendarDelegate?.epCalendarPicker!(self, didSelectDate: cell.currentDate as Date)
             cell.selectedForLabelColor(dateSelectionColor)
             dismiss(animated: true, completion: nil)
             return

@@ -1,8 +1,10 @@
 language: objective-c  #1
-osx_image: xcode7.3 #2
+osx_image: xcode8.3 #2
 xcode_project: EPCalendar.xcodeproj #3
 xcode_scheme: EPCalendar #4
 xcode_sdk: iphonesimulator #5
 script:
-- xcodebuild -project EPCalendar.xcodeproj -scheme EPCalendar -sdk iphonesimulator build test
+- open -b com.apple.iphonesimulator
+- xcodebuild -project EPCalendar.xcodeproj -scheme EPCalendar -sdk iphonesimulator  -destination "platform=iOS Simulator,name=iPhone 7" build test
+
 #https://github.com/ipraba/EPCalendarPicker
