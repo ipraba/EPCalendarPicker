@@ -49,7 +49,7 @@ open class EPCalendarPicker: UICollectionViewController {
         // setup Navigationbar
         self.navigationController?.navigationBar.tintColor = self.tintColor
         self.navigationController?.navigationBar.barTintColor = self.barTintColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:self.tintColor]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:self.tintColor]
 
         // setup collectionview
         self.collectionView?.delegate = self
@@ -320,20 +320,20 @@ open class EPCalendarPicker: UICollectionViewController {
     
     //MARK: Button Actions
     
-    internal func onTouchCancelButton() {
+    @objc internal func onTouchCancelButton() {
        //TODO: Create a cancel delegate
         calendarDelegate?.epCalendarPicker!(self, didCancel: NSError(domain: "EPCalendarPickerErrorDomain", code: 2, userInfo: [ NSLocalizedDescriptionKey: "User Canceled Selection"]))
         dismiss(animated: true, completion: nil)
         
     }
     
-    internal func onTouchDoneButton() {
+    @objc internal func onTouchDoneButton() {
         //gathers all the selected dates and pass it to the delegate
         calendarDelegate?.epCalendarPicker!(self, didSelectMultipleDate: arrSelectedDates)
         dismiss(animated: true, completion: nil)
     }
 
-    internal func onTouchTodayButton() {
+    @objc internal func onTouchTodayButton() {
         scrollToToday()
     }
     
