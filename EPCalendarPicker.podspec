@@ -10,10 +10,10 @@ Features
 4. Option to define the calendar start and ending year
 DESC
 
-  s.homepage         = "https://github.com/ipraba/EPCalendarPicker"
+  s.homepage         = "https://github.com/LEYEFEINC/EPCalendarPicker"
   s.license          = 'MIT'
   s.author           = { "Prabaharan" => "mailprabaharan.e@gmail.com" }
-  s.source           = { :git => "https://github.com/ipraba/EPCalendarPicker.git", :tag => '1.0.8' }
+  s.source           = { 'https://github.com/LEYEFEINC/EPCalendarPicker.git', :branch => 'master' }
   s.platform     = :ios, '8.0'
   s.requires_arc = true
   s.source_files = 'EPCalendar/EPCalendarPicker'
