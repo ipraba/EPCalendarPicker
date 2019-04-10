@@ -18,10 +18,10 @@ extension UIViewController {
     }
     
     func showAlert(_ message: String, andTitle title: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         
         // add an action (button)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         
         // show the alert
         self.present(alert, animated: true, completion: nil)
@@ -35,7 +35,7 @@ extension UICollectionView {
         let sections = self.numberOfSections
         
         if indexPath.section <= sections{
-            let attributes = self.layoutAttributesForSupplementaryElement(ofKind: UICollectionElementKindSectionHeader, at: indexPath)
+            let attributes = self.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath)
             let topOfHeader = CGPoint(x: 0, y: attributes!.frame.origin.y - self.contentInset.top)
             self.setContentOffset(topOfHeader, animated:false)
         }

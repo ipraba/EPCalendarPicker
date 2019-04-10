@@ -49,7 +49,7 @@ open class EPCalendarPicker: UICollectionViewController {
         // setup Navigationbar
         self.navigationController?.navigationBar.tintColor = self.tintColor
         self.navigationController?.navigationBar.barTintColor = self.barTintColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:self.tintColor]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:self.tintColor]
 
         // setup collectionview
         self.collectionView?.delegate = self
@@ -59,7 +59,7 @@ open class EPCalendarPicker: UICollectionViewController {
 
         // Register cell classes
         self.collectionView!.register(UINib(nibName: "EPCalendarCell1", bundle: Bundle(for: EPCalendarPicker.self )), forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView!.register(UINib(nibName: "EPCalendarHeaderView", bundle: Bundle(for: EPCalendarPicker.self )), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header")
+        self.collectionView!.register(UINib(nibName: "EPCalendarHeaderView", bundle: Bundle(for: EPCalendarPicker.self )), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
         
         inititlizeBarButtons()
 
@@ -80,18 +80,18 @@ open class EPCalendarPicker: UICollectionViewController {
     func inititlizeBarButtons(){
         
 
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(EPCalendarPicker.onTouchCancelButton))
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(EPCalendarPicker.onTouchCancelButton))
         self.navigationItem.leftBarButtonItem = cancelButton
 
         var arrayBarButtons  = [UIBarButtonItem]()
         
         if multiSelectEnabled {
-            let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(EPCalendarPicker.onTouchDoneButton))
+            let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(EPCalendarPicker.onTouchDoneButton))
             arrayBarButtons.append(doneButton)
         }
         
         if showsTodaysButton {
-            let todayButton = UIBarButtonItem(title: "Today", style: UIBarButtonItemStyle.plain, target: self, action:#selector(EPCalendarPicker.onTouchTodayButton))
+            let todayButton = UIBarButtonItem(title: "Today", style: UIBarButtonItem.Style.plain, target: self, action:#selector(EPCalendarPicker.onTouchTodayButton))
             arrayBarButtons.append(todayButton)
             todayButton.tintColor = todayTintColor
         }
@@ -258,13 +258,13 @@ open class EPCalendarPicker: UICollectionViewController {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets
     {
-        return UIEdgeInsetsMake(5, 0, 5, 0); //top,left,bottom,right
+        return UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0); //top,left,bottom,right
     }
     
     override open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
-        if kind == UICollectionElementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", for: indexPath) as! EPCalendarHeaderView
+        if kind == UICollectionView.elementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header", for: indexPath) as! EPCalendarHeaderView
             
             let startDate = Date(year: startYear, month: 1, day: 1)
             let firstDayOfMonth = startDate.dateByAddingMonths(indexPath.section)
