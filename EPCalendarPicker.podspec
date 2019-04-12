@@ -15,6 +15,7 @@ DESC
   s.author           = { "Prabaharan" => "mailprabaharan.e@gmail.com" }
   s.source           = { 'https://github.com/LEYEFEINC/EPCalendarPicker.git', :tag => '1.1.1' }
   s.platform     = :ios, '8.0'
+
   s.requires_arc = true
   s.source_files = 'EPCalendar/EPCalendarPicker'
   s.frameworks = 'UIKit'
