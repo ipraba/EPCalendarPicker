@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "EPCalendarPicker"
-  s.version          = "1.0.8"
+  s.version          = "1.0.9"
   s.summary          = "Colourful calendar component for iOS written in Swift"
   s.description      = <<-DESC
 Features
